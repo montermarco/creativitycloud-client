@@ -5,20 +5,21 @@ import { LOGIN_USER, SIGNUP_USER, LOGOUT_USER } from './types'
 const baseURL = 'http://localhost:3001/api'
 
 // LOGIN 
-export const login = (email, password) => async dispatch => {
+export const login = (username, password) => async dispatch => {
     try {
-        const response = await axios.post(`${baseURL}/login`, {email, password })
+        //debugger;
+        const response = await axios.post(`${baseURL}/login`, {username, password })
         dispatch({type: LOGIN_USER, payload: response})
-        debugger;
+        console.log(response)
     } catch (error) {
         console.log(error)
     }
 };
 
 //SIGNUP
-export const signup = (username, email, password, role) => async dispatch => {
+export const signup = (username, password) => async dispatch => {
     try {
-        const response = await axios.post(`${baseURL}/signup`, {username, email, password, role })
+        const response = await axios.post(`${baseURL}/signup`, {username, password})
         console.log(response)
         dispatch({ type: SIGNUP_USER, payload: response })
     } catch (error) {
@@ -31,3 +32,6 @@ export const logout = () => async dispatch => {
     await axios.get(`${baseURL}/logout`)
     dispatch({type: LOGOUT_USER, payload: {}})
 };
+
+
+

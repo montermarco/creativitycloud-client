@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
@@ -7,15 +7,18 @@ import * as actions from '../../actions'
   class Login extends Component {
     
       state = {
-        user: '',
+        activo: '',
         password: '',
-        email: ''
+        username: ''
     }
     
+
+    // to apply conditional rendering
     componentWillReceiveProps({data}){
       if(data){
-        const {user} = data
-        this.setState({ user })
+        const {activo} = data
+        console.log(data)
+        this.setState({ activo })
       }
     }
 
@@ -26,26 +29,25 @@ import * as actions from '../../actions'
     }
 
     handleSubmit = (e) => {
+      const {username, password } = this.state
       e.preventDefault();
-      const {email, password } = this.state
-      this.props.login(email, password)
+      this.props.login(username, password)
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
         }
       });
     }
-  
-    render() {
-      const { getFieldDecorator } = this.props.form;
-      return (
-        <Form onSubmit={this.handleSubmit} className="login-form">
+
+    successLogin = () => {
+      return (this.state.activo === '') ?          
+           <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
-            {getFieldDecorator('userName', {
+            {this.props.form.getFieldDecorator('userName', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(
               <Input 
-                name='email'
+                name='username'
                 onChange={this.submission}
                 prefix={<Icon 
                 type="user" 
@@ -54,11 +56,11 @@ import * as actions from '../../actions'
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('password', {
+            {this.props.form.getFieldDecorator('password', {
               rules: [{ required: true, message: 'Please input your Password!' }],
             })(
               <Input
-                name='passwrod'  
+                name='password'  
                 onChange={this.submission}
                 prefix={<Icon 
                 type="lock" 
@@ -68,7 +70,7 @@ import * as actions from '../../actions'
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('remember', {
+            {this.props.form.getFieldDecorator('remember', {
               valuePropName: 'checked',
               initialValue: true,
             })(
@@ -79,14 +81,28 @@ import * as actions from '../../actions'
             </Button>
             Or <Link to="/signup">crea una cuenta</Link>
           </Form.Item>
-        </Form>
+        </Form> : <Redirect to='/'/>
+      
+    }
+
+
+    render() {
+      return (
+        <div>
+        {this.successLogin()}
+        </div>
       );
     }
+
+
   }
   
-  const LoginForm = Form.create({ name: 'normal_login' })(Login);
+  const LoginForm = Form.create({ name: 'login' })(Login);
+  
+  //this auth is the name of the reducer, the state, we are returning an empty object 
   const mapStateToProps = ({auth}) => { return auth }
 
+  // so the reducer can make the changes to the state, we CONNECT mapstatetoprops with our actions
   export default connect(mapStateToProps, actions)(LoginForm);
 
   

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { Form, Input, Cascader, Checkbox, Button } from 'antd';
+import { Link, Redirect } from 'react-router-dom'
+import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
   
@@ -9,8 +9,6 @@ import * as actions from '../../actions'
       user: '',
       password: '',
       username: '',
-      email: '',
-      role: '',
       confirmDirty: false,
       autoCompleteResult: [],
     };
@@ -30,108 +28,69 @@ import * as actions from '../../actions'
 
     handleSubmit = (e) => {
       e.preventDefault();
-      const {username, email, password, role} = this.state
-      this.props.signup(username, email, password, role)
+      const {username, password } = this.state
+      this.props.signup(username, password )
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
         }
       });
     }
-  
+
     handleConfirmBlur = (e) => {
       const value = e.target.value;
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
   
-    compareToFirstPassword = (rule, value, callback) => {
-      const form = this.props.form;
-      if (value && value !== form.getFieldValue('password')) {
-        callback('Two passwords that you enter is inconsistent!');
-      } else {
-        callback();
-      }
+    successSubmission = () => {
+        return (this.state.user === '') ? 
+ <Form  onSubmit={this.handleSubmit}>
+
+
+<Form.Item label="Usuario">
+  {this.props.form.getFieldDecorator('username')(
+    <Input
+      name='username'
+      onChange={this.submission} 
+      type="text" />
+  )}
+</Form.Item>
+
+<Form.Item label="password">
+  {this.props.form.getFieldDecorator('password', {
+    rules: [{ required: true, message: 'Please input your password!', }, { validator: this.validateToNextPassword,}],
+  })(
+    <Input 
+      name='password'  
+      onChange={this.submission}
+      type="password" />
+  )}
+</Form.Item>
+
+<Form.Item
+  label="Confirma tu contraseña" >
+  {this.props.form.getFieldDecorator('confirm', {
+    rules: [{ required: true, message: 'Please confirm your password!', }, { validator: this.compareToFirstPassword, }],
+  })(
+    <Input type="password" onBlur={this.handleConfirmBlur} />
+  )}
+</Form.Item>
+
+<Form.Item >
+  <Button type="primary" htmlType="submit">Register</Button>            
+</Form.Item>
+<Link to="/login">ya tienes cuenta?</Link>
+</Form> :  <Redirect to='/'/>
     }
-  
-    validateToNextPassword = (rule, value, callback) => {
-      const form = this.props.form;
-      if (value && this.state.confirmDirty) {
-        form.validateFields(['confirm'], { force: true });
-      }
-      callback();
-    }
-  
+
     render() {
-      const { getFieldDecorator } = this.props.form;
-    
-      const formItemLayout = {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 8 },
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 16 },
-        },
-      };
-      const tailFormItemLayout = {
-        wrapperCol: {
-          xs: {
-            span: 24,
-            offset: 0,
-          },
-          sm: {
-            span: 16,
-            offset: 8,
-          },
-        },
-      };
-     
-      
       return (
-        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-
-
-          <Form.Item label="E-mail">
-            {getFieldDecorator('email', {
-              rules: [{
-                type: 'email', message: 'The input is not valid E-mail!', }, { required: true, message: 'Please input your E-mail!', }],
-            })(
-              <Input
-                name='email'
-                onChange={this.submission} 
-                type="text" />
-            )}
-          </Form.Item>
-
-          <Form.Item label="Contraseña">
-            {getFieldDecorator('password', {
-              rules: [{ required: true, message: 'Please input your password!', }, { validator: this.validateToNextPassword,}],
-            })(
-              <Input 
-                name='passwrod'  
-                onChange={this.submission}
-                type="password" />
-            )}
-          </Form.Item>
-          
-          <Form.Item
-            label="Confirma tu contraseña" >
-            {getFieldDecorator('confirm', {
-              rules: [{ required: true, message: 'Please confirm your password!', }, { validator: this.compareToFirstPassword, }],
-            })(
-              <Input type="password" onBlur={this.handleConfirmBlur} />
-            )}
-          </Form.Item>
-          
-         
-        
-          <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">Register</Button>
-          </Form.Item>
-        </Form>
+        <div>
+        {this.successSubmission()}
+        </div>
       );
     }
+
   }
   
   const SignupForm = Form.create({ name: 'register' })(Signup);
