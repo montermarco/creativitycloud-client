@@ -52,7 +52,7 @@ import * as actions from '../../actions'
     <Input
       name='username'
       onChange={this.submission} 
-      type="email" />
+      type="text" />
   )}
 </Form.Item>
 

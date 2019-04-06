@@ -48,7 +48,6 @@ import * as actions from '../../actions'
             })(
               <Input 
                 name='username'
-                
                 onChange={this.submission}
                 prefix={<Icon 
                 type="user" 
