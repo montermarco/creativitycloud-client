@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Menu, Button } from 'antd';
-import { Link, Redirect } from 'react-router-dom';
+import { Menu } from 'antd';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
 
