@@ -18,6 +18,9 @@ code {
   text-align: center;
   overflow: hidden;
 }
+.container{
+  margin: 5%;
+}
 
 .ccc{
   margin-bottom: 150px;
@@ -28,13 +31,13 @@ code {
 }
 
 .creativity{
-  background-color:  rgba(206, 115, 188, 0.55);
+  background-color: rgba(89, 195, 201, 0.495);
   color: #fff;
-  height: 10%;
   font-family: 'Montserrat', sans-serif;
-  letter-spacing: 10px;  
+  letter-spacing: 7px;  
+  text-align: center;
   font-size: 3rem;
-  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(197, 142, 220), 0 0 5px rgba(137, 29, 147, 0.625);
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(142, 189, 220), 0 0 5px rgba(29, 76, 147, 0.625);
 }
 
 .who{
@@ -60,7 +63,7 @@ code {
 
 .works{
   margin-bottom: 150px;
-  background-image: url("/images/works.jpg");
+  background-color: rgba(89, 195, 201, 0.495);
   background-size: cover;
   height: 800px;     
 }
@@ -77,16 +80,15 @@ code {
 }
 .title-cian{
   margin: 50px;
-  width: 45%;
   color: #CE73BC;
   font-family: 'Montserrat', sans-serif;
   background-color: #fff;
   box-shadow: 4px 4px 4px rgba(148, 84, 135, 0.652);
   letter-spacing: 10px;  
   font-size: 2.3rem;
+  text-align: center;
 }
 .title-blue{
-  width: 45%;
   margin: 50px;
   color: #59C3C9;
   font-family: 'Montserrat', sans-serif;
@@ -94,24 +96,13 @@ code {
   box-shadow: 4px 4px 4px rgba(68, 150, 155, 0.632);
   letter-spacing: 10px;  
   font-size: 2.3rem;
+  text-align: center;
 }
 .contentlanding{
-  background-color: #fff;
-  width: 45%;
-  padding: 20px;
-  margin: 0;
+  background-color: rgb(255, 255, 255);
   font-family: 'Montserrat', sans-serif;   
 }
-.right{
-  position: absolute;
-  right: 0px;
-}
 
-.left{
-  position: relative;
-  left: 0px;
-  top: 150px;
-}
 .texty{
   padding: 10px 40px;
   text-align: left; 
@@ -121,37 +112,4 @@ code {
   font-size: 15px;
   text-align: justify;
   text-justify: inter-word;
-}
-
-.works{
-  margin-bottom: 150px;
-  background-image: url("/images/works.jpg");
-  background-size: cover;
-  height: 800px; 
-  position: relative;    
-}
-.worklist{
-
-  padding: 20px;
-  text-align: left; 
-  letter-spacing: 3px;
-  word-spacing: 10px; 
-  line-height: 25px; 
-  font-size: 15px;
-  text-align: justify;
-  text-justify: inter-word;
-   
-}
-
-.wl{
-  list-style: none;
-}
-
-.worklistcontainer{
-  background-color: #fff;
-  width: 550px;
-  height: 40%;
-  padding: 0;
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;   
 }

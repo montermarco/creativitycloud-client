@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
 
@@ -41,7 +41,9 @@ import * as actions from '../../actions'
 
     onRedirect = () => {
       return (this.state.user === '') ?          
-           <Form onSubmit={this.handleSubmit} className="login-form">
+           <Row className="container" type="flex" justify="space-between" align="bottom">
+        <Col span={12} offset={6}>
+        <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             {this.props.form.getFieldDecorator('userName', {
               rules: [{ required: true, message: 'Please input your username!' }],
@@ -69,20 +71,26 @@ import * as actions from '../../actions'
                 placeholder="Password" />
             )}
           </Form.Item>
+
           <Form.Item>
             {this.props.form.getFieldDecorator('remember', {
               valuePropName: 'checked',
               initialValue: true,
-            })(
-              <Checkbox>Remember me</Checkbox>
-            )}            
+            })(<Checkbox>Remember me</Checkbox>)}            
+            <Row type="flex" justify="center">
             <Button type="primary" htmlType="submit" className="login-form-button">
               entrar
             </Button>
+            </Row>
+            <Row type="flex" justify="center">
             Or <Link to="/signup">crea una cuenta</Link>
+            </Row>
           </Form.Item>
-        </Form> : <Redirect to='/home'/>
-      
+
+        </Form>
+        </Col>
+      </Row>  : <Redirect to='/home'/>
+     
     }
 
 

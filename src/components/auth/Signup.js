@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Row, Col } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
   
@@ -44,9 +44,10 @@ import * as actions from '../../actions'
   
     onRedirect = () => {
         return (this.state.user === '') ? 
-        <Form  onSubmit={this.handleSubmit}>
 
-
+        <Row className="container" type="flex" justify="space-between" align="bottom">
+          <Col span={12} offset={6}>
+          <Form  onSubmit={this.handleSubmit}>
         <Form.Item label="Usuario">
           {this.props.form.getFieldDecorator('username')(
           <Input
@@ -76,11 +77,24 @@ import * as actions from '../../actions'
           )}
         </Form.Item>
 
-        <Form.Item >
-          <Button type="primary" htmlType="submit">Register</Button>            
-        </Form.Item>
-        <Link to="/login">ya tienes cuenta?</Link>
-        </Form> :  <Redirect to='/'/>
+
+          <Row type="flex" justify="center">
+            <Form.Item >
+              <Button type="primary" htmlType="submit">Register</Button>            
+            </Form.Item>
+          </Row>
+
+          <Row type="flex" justify="center">
+            <Link to="/login">ya tienes cuenta?</Link>
+          </Row>
+
+        </Form> 
+          </Col>
+        </Row>
+      
+        
+        
+        :  <Redirect to='/'/>
     }
 
     render() {

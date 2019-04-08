@@ -20,9 +20,7 @@ export const Secret  = ({component: Component, user, ...rest}) => {
     )
 }
 
-
 const mapStateToProps = ({ auth }) => auth
-
 export default connect(mapStateToProps)(Secret)
 
  
