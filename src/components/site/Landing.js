@@ -67,15 +67,7 @@ class Landing extends Component {
                             </Carousel>  
                     </Row>
                 </Col>
-            </Row>
-
-
-
-
-
-                     
-             
-            
+            </Row>            
         );
     }
 }

@@ -41,6 +41,23 @@ import * as actions from '../../actions'
       const value = e.target.value;
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
+
+    compareToFirstPassword = (rule, value, callback) => {
+      const form = this.props.form;
+      if (value && value !== form.getFieldValue('password')) {
+        callback('Two passwords that you enter is inconsistent!');
+      } else {
+        callback();
+      }
+    }
+  
+    validateToNextPassword = (rule, value, callback) => {
+      const form = this.props.form;
+      if (value && this.state.confirmDirty) {
+        form.validateFields(['confirm'], { force: true });
+      }
+      callback();
+    }
   
     onRedirect = () => {
         return (this.state.user === '') ? 
@@ -80,7 +97,7 @@ import * as actions from '../../actions'
 
           <Row type="flex" justify="center">
             <Form.Item >
-              <Button type="primary" htmlType="submit">Register</Button>            
+              <Button type="primary" htmlType="submit">Registrar</Button>            
             </Form.Item>
           </Row>
 
@@ -90,11 +107,7 @@ import * as actions from '../../actions'
 
         </Form> 
           </Col>
-        </Row>
-      
-        
-        
-        :  <Redirect to='/'/>
+        </Row> :  <Redirect to='/home'/>
     }
 
     render() {
