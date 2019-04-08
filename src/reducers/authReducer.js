@@ -7,7 +7,7 @@ export default (state = {}, action) => {
         case SIGNUP_USER:
             return action.payload
         case LOGOUT_USER:
-            return action.payload    
+            return action.payload   
         default:
             return state;    
     }

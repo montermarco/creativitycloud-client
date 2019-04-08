@@ -7,18 +7,17 @@ import * as actions from '../../actions'
   class Login extends Component {
     
       state = {
-        activo: '',
+        user: '',
         password: '',
         username: ''
     }
-    
-
+  
     // to apply conditional rendering
     componentWillReceiveProps({data}){
       if(data){
-        const {activo} = data
-        console.log(data)
-        this.setState({ activo })
+        const {user} = data
+        console.log(this.state.user)
+        this.setState({ user })
       }
     }
 
@@ -27,6 +26,7 @@ import * as actions from '../../actions'
       const { name, value } = target
       this.setState({ [name]:value })
     }
+
 
     handleSubmit = (e) => {
       const {username, password } = this.state
@@ -39,8 +39,8 @@ import * as actions from '../../actions'
       });
     }
 
-    successLogin = () => {
-      return (this.state.activo === '') ?          
+    onRedirect = () => {
+      return (this.state.user === '') ?          
            <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             {this.props.form.getFieldDecorator('userName', {
@@ -81,7 +81,7 @@ import * as actions from '../../actions'
             </Button>
             Or <Link to="/signup">crea una cuenta</Link>
           </Form.Item>
-        </Form> : <Redirect to='/'/>
+        </Form> : <Redirect to='/home'/>
       
     }
 
@@ -89,7 +89,7 @@ import * as actions from '../../actions'
     render() {
       return (
         <div>
-        {this.successLogin()}
+        {this.onRedirect()}
         </div>
       );
     }

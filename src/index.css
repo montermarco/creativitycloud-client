@@ -13,14 +13,145 @@ code {
     monospace;
 }
 
-.ant-carousel .slick-slide {
+.myContainer{
+  margin-bottom: 150px;
   text-align: center;
-  height: 100%;
-  line-height: 160px;
-  background: #59C3C9;
   overflow: hidden;
 }
 
-.ant-carousel .slick-slide h3 {
+.ccc{
+  margin-bottom: 150px;
+  background-image: url("/images/landingBrain.png");
+  background-position: center;
+  height: 800px;
+  background-repeat: no-repeat;     
+}
+
+.creativity{
+  background-color:  rgba(206, 115, 188, 0.55);
   color: #fff;
+  height: 10%;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 10px;  
+  font-size: 3rem;
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(197, 142, 220), 0 0 5px rgba(137, 29, 147, 0.625);
+}
+
+.who{
+  margin-bottom: 150px;
+  background-image: url("/images/whoweare.jpg");
+  background-size: cover;
+  height: 800px;     
+}
+
+.what{
+  margin-bottom: 150px;
+  background-image: url("/images/puzzlehands.png");
+  background-size: cover;
+  height: 800px;     
+}
+
+.why{
+  margin-bottom: 150px;
+  background-image: url("/images/porque.jpg");
+  background-size: cover;
+  height: 800px;     
+}
+
+.works{
+  margin-bottom: 150px;
+  background-image: url("/images/works.jpg");
+  background-size: cover;
+  height: 800px;     
+}
+
+.crear:hover{
+  background-color:  rgba(89, 195, 201, 0.57);
+  color: #fff;
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(142, 202, 220), 0 0 5px rgba(29, 139, 147, 0.625);
+}
+.entrar:hover{
+  background-color:  rgba(206, 115, 188, 0.55);
+  color: #fff;
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(197, 142, 220), 0 0 5px rgba(137, 29, 147, 0.625);
+}
+.title-cian{
+  margin: 50px;
+  width: 45%;
+  color: #CE73BC;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
+  box-shadow: 4px 4px 4px rgba(148, 84, 135, 0.652);
+  letter-spacing: 10px;  
+  font-size: 2.3rem;
+}
+.title-blue{
+  width: 45%;
+  margin: 50px;
+  color: #59C3C9;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
+  box-shadow: 4px 4px 4px rgba(68, 150, 155, 0.632);
+  letter-spacing: 10px;  
+  font-size: 2.3rem;
+}
+.contentlanding{
+  background-color: #fff;
+  width: 45%;
+  padding: 20px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;   
+}
+.right{
+  position: absolute;
+  right: 0px;
+}
+
+.left{
+  position: relative;
+  left: 0px;
+  top: 150px;
+}
+.texty{
+  padding: 10px 40px;
+  text-align: left; 
+  letter-spacing: 3px;
+  word-spacing: 10px; 
+  line-height: 25px; 
+  font-size: 15px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.works{
+  margin-bottom: 150px;
+  background-image: url("/images/works.jpg");
+  background-size: cover;
+  height: 800px; 
+  position: relative;    
+}
+.worklist{
+
+  padding: 20px;
+  text-align: left; 
+  letter-spacing: 3px;
+  word-spacing: 10px; 
+  line-height: 25px; 
+  font-size: 15px;
+  text-align: justify;
+  text-justify: inter-word;
+   
+}
+
+.wl{
+  list-style: none;
+}
+
+.worklistcontainer{
+  background-color: #fff;
+  width: 550px;
+  height: 40%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;   
 }

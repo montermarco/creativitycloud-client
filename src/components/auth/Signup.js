@@ -42,51 +42,51 @@ import * as actions from '../../actions'
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
   
-    successSubmission = () => {
+    onRedirect = () => {
         return (this.state.user === '') ? 
- <Form  onSubmit={this.handleSubmit}>
+        <Form  onSubmit={this.handleSubmit}>
 
 
-<Form.Item label="Usuario">
-  {this.props.form.getFieldDecorator('username')(
-    <Input
-      name='username'
-      onChange={this.submission} 
-      type="text" />
-  )}
-</Form.Item>
+        <Form.Item label="Usuario">
+          {this.props.form.getFieldDecorator('username')(
+          <Input
+            name='username'
+            onChange={this.submission} 
+            type="text" />
+        )}
+        </Form.Item>
 
-<Form.Item label="password">
-  {this.props.form.getFieldDecorator('password', {
-    rules: [{ required: true, message: 'Please input your password!', }, { validator: this.validateToNextPassword,}],
-  })(
-    <Input 
-      name='password'  
-      onChange={this.submission}
-      type="password" />
-  )}
-</Form.Item>
+        <Form.Item label="password">
+          {this.props.form.getFieldDecorator('password', {
+            rules: [{ required: true, message: 'Please input your password!', }, { validator: this.validateToNextPassword,}],
+          })(
+            <Input 
+              name='password'  
+              onChange={this.submission}
+              type="password" />
+          )}
+        </Form.Item>
 
-<Form.Item
-  label="Confirma tu contraseña" >
-  {this.props.form.getFieldDecorator('confirm', {
-    rules: [{ required: true, message: 'Please confirm your password!', }, { validator: this.compareToFirstPassword, }],
-  })(
-    <Input type="password" onBlur={this.handleConfirmBlur} />
-  )}
-</Form.Item>
+        <Form.Item
+          label="Confirma tu contraseña" >
+          {this.props.form.getFieldDecorator('confirm', {
+            rules: [{ required: true, message: 'Please confirm your password!', }, { validator: this.compareToFirstPassword, }],
+          })(
+            <Input type="password" onBlur={this.handleConfirmBlur} />
+          )}
+        </Form.Item>
 
-<Form.Item >
-  <Button type="primary" htmlType="submit">Register</Button>            
-</Form.Item>
-<Link to="/login">ya tienes cuenta?</Link>
-</Form> :  <Redirect to='/'/>
+        <Form.Item >
+          <Button type="primary" htmlType="submit">Register</Button>            
+        </Form.Item>
+        <Link to="/login">ya tienes cuenta?</Link>
+        </Form> :  <Redirect to='/'/>
     }
 
     render() {
       return (
         <div>
-        {this.successSubmission()}
+        {this.onRedirect()}
         </div>
       );
     }

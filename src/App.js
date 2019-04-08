@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 // Components
+//import Secret from './components/auth/Secret';
+import Landing from './components/site/Landing';
 import SignupForm from './components/auth/Signup';
 import LoginForm from './components/auth/Login';
 import Header from './components/site/Header';
-import Landing from './components/site/Landing';
-
+import Home from './components/site/Home';
+import ProfileCard from './components/site/ProfileCard';
+import ProjectList from './components/projects/ProjectList';
+import ProjectDetails from './components/projects/ProjectDetails'
 import 'antd/dist/antd.css';
 
+
 class App extends Component {
+
   render() {
     return (    
-      <BrowserRouter>
-          <Header/>
         <div>
-            <Route extact path ='/' component={Landing} />
-            <Route extact path ='/login' component={LoginForm} />
-            <Route extact path ='/signup' component={SignupForm} />            
-        </div>
+        <BrowserRouter>
+          <div className='nav'><Header/></div>
+          
+        <Switch>
+        
+            <Route exact path ='/' component={Landing} />
+            <Route path ='/home' component={Home} />
+            <Route path ='/login' component={LoginForm} />
+            <Route path ='/signup' component={SignupForm} />
+            <Route exact path ='/profile' component={ProfileCard} />
+            <Route path ='/projects' component={ProjectList} />
+            <Route path ='/projects/:id' component={ProjectDetails} />
+
+        </Switch>
       </BrowserRouter>      
+        </div>
     );
   }
 }
 
 export default App;
+
+//<Secret user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} />

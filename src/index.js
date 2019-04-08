@@ -11,7 +11,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk'; 
 
-//STORE SETUP
+//STORE SETUP with redux dev tool
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,
