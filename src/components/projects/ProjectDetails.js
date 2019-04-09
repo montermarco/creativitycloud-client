@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserHeader from '../site/UserHeader';
 import {connect} from 'react-redux';
 import {getUser, projectList} from '../../actions';
 
@@ -8,7 +7,7 @@ class ProjectDetails extends Component {
         return (
             <div>
                Project detail 
-               <UserHeader userId={this.props.project._id}/>
+               
                
             </div>
         );

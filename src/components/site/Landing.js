@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Carousel, Row, Col, Icon, Steps } from 'antd';
+import { Carousel, Row, Col, Icon, Steps, Divider } from 'antd';
 import { Link } from 'react-router-dom';
 
 const porque = "Simplemente hay demasiadas causas que apoyar con el empoderamiento de las Marcas y Organiazaciones comprometidas con un verdadero apoyo social alrededor del mundo.";
 const porques = "Una gran oportunidad para desarrollar campañas efectivas que transormen nuestra manera de crear impacto en un mundo mejor."
 const quien = "Personas creativas interesadas en crear una comunicación constructiva y poderosa."
 const como = "Nuestra tecnología logra la combinación perfecta entre las causas mundiales y las marcas socialmente resopnsables a través de valores y objetivos de comunicación."
+const lorem = "Queremos un mundo que funcione para todos, y creemos que la tecnología y la innovación pueden mover la aguja en tres áreas clave."
 const Step = Steps.Step;
 
 class Landing extends Component {
@@ -65,6 +66,18 @@ class Landing extends Component {
                                         </Row>  
                                     </div>                                               
                             </Carousel>  
+
+                            <Divider/>
+                                <div className='space'></div>
+                                    <div>
+                                        <Row type="flex" justify="center">
+                                        <h2 className="hdr">Nuestras áreas de interes</h2>
+                                        <p className='hombg hometxt'>{lorem}</p>
+                                        <img src="/images/campaing.jpg" alt="content"/>
+                                    </Row>
+                                        <Row span={12} type="flex" justify="center"><Link to='/login' className='hombg hometxt'>Leer más...</Link></Row>
+                                    </div>
+                                <div className='space'></div>
                     </Row>
                 </Col>
             </Row>            

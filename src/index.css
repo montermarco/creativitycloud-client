@@ -13,13 +13,21 @@ code {
     monospace;
 }
 
-.myContainer{
-  margin-bottom: 150px;
-  text-align: center;
-  overflow: hidden;
+.down{
+  margin-top: 300px;
+}
+.foot{
+  text-align: end;
+  font-size: 10px;
+  background-color: rgba(89, 195, 201, 0.509);
 }
 .container{
-  margin: 5%;
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+
+.space{
+  height: 40px;
 }
 
 .ccc{
@@ -113,3 +121,27 @@ code {
   text-align: justify;
   text-justify: inter-word;
 }
+
+.hdr{
+  padding: 10px 40px;
+  word-spacing: 5px; 
+  line-height: 25px; 
+  text-align: center;
+  text-justify: inter-word;
+  font-family: 'Montserrat', sans-serif;   
+}
+
+.hometxt{
+  padding: 10px 20px;
+  word-spacing: 5px; 
+  line-height: 15px; 
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: 'Montserrat', sans-serif;  
+}
+.hombg{
+  background-color: rgba(255, 255, 255, 0.687);
+  font-family: 'Montserrat', sans-serif;    
+}
+
+  

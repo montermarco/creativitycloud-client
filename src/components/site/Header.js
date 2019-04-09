@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'antd';
+import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
@@ -56,10 +56,10 @@ class Header extends Component {
           selectedKeys={[this.state.current]}
           mode="horizontal">
 
-        
+    
         <Menu.Item key="home"><Link to='/home'>home</Link></Menu.Item>
         <Menu.Item key="profile"><Link to='/profile'>perfil</Link></Menu.Item>
-        <Menu.Item key="dash">dashboard</Menu.Item>
+        
         
         <SubMenu title={<span className="submenu-title-wrapper"><Link to='/projects'>explorar</Link></span>}>
           <MenuItemGroup title="categorias">
@@ -75,9 +75,9 @@ class Header extends Component {
           </MenuItemGroup>         
         </SubMenu>
         
-        <Menu.Item key="logout">
-          <Link to='/' onClick={this.logout}>salir</Link>
-        </Menu.Item>
+   
+        <Menu.Item key="logout"><Link to='/' onClick={this.logout}><Icon type="logout" /></Link></Menu.Item>
+        
       </Menu>    
   }
 

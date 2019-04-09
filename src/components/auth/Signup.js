@@ -105,7 +105,7 @@ import * as actions from '../../actions'
             <Link to="/login">ya tienes cuenta?</Link>
           </Row>
 
-        </Form> 
+        </Form>         
           </Col>
         </Row> :  <Redirect to='/home'/>
     }

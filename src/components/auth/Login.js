@@ -40,8 +40,9 @@ import * as actions from '../../actions'
     }
 
     onRedirect = () => {
-      return (this.state.user === '') ?          
-           <Row className="container" type="flex" justify="space-between" align="bottom">
+      return (this.state.user === '') ?
+                      
+        <Row className="container" type="flex" justify="space-between" align="top">
         <Col span={12} offset={6}>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
@@ -83,11 +84,11 @@ import * as actions from '../../actions'
             </Button>
             </Row>
             <Row type="flex" justify="center">
-            Or <Link to="/signup">crea una cuenta</Link>
+            <Link to="/signup">crea una cuenta</Link>
             </Row>
           </Form.Item>
 
-        </Form>
+        </Form>        
         </Col>
       </Row>  : <Redirect to='/home'/>
      

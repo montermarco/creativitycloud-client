@@ -15,7 +15,7 @@ const Description = ({ term, children, span = 12 }) => (
 const content = (
     <div>
         <Row>
-            <Description term="correo"></Description>
+            <Description term="correo">monter.marco"gmail.com</Description>
             <Description term="tipo de usuario"></Description>
             <Description term="contacto"></Description>
             <Description term="correo contacto"></Description>
