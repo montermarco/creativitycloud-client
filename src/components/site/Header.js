@@ -10,7 +10,8 @@ const MenuItemGroup = Menu.ItemGroup;
 class Header extends Component {
   state = {
     current: 'home',
-    user: ''
+    user: '',
+    logged: ''
   }
 
   handleClick = (e) => {
@@ -20,18 +21,19 @@ class Header extends Component {
     });
   }
 
-  logout = () => {
-    this.props.logout() 
-  }
-   
   // to apply conditional rendering
    componentWillReceiveProps({data}){
     if(data === undefined){
       console.log(data)
       this.setState({ user: ''})
-    } else { this.setState({ user: data.username })}
+    } else { this.setState({ user: data.username, logged: data._id })        
+      }   
   }
 
+  logout = () => {
+    this.props.logout() 
+  }
+   
 
   Navbar =  () => {
     return (this.state.user === '') ?
@@ -56,7 +58,7 @@ class Header extends Component {
           selectedKeys={[this.state.current]}
           mode="horizontal">
 
-    
+        <Menu.Item key="landing">hola {this.state.user}</Menu.Item>
         <Menu.Item key="home"><Link to='/home'>home</Link></Menu.Item>
         <Menu.Item key="profile"><Link to='/profile'>perfil</Link></Menu.Item>
         

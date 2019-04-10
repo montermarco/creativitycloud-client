@@ -12,7 +12,7 @@ import * as actions from '../../actions'
         username: ''
     }
   
-    // to apply conditional rendering
+    // to apply conditional rendering, from data we pull any user info
     componentWillReceiveProps({data}){
       if(data){
         const {user} = data
@@ -24,7 +24,7 @@ import * as actions from '../../actions'
     submission = e => {
       const { target } = e
       const { name, value } = target
-      this.setState({ [name]:value })
+      this.setState({ [name]:value })      
     }
 
 
@@ -32,6 +32,7 @@ import * as actions from '../../actions'
       const {username, password } = this.state
       e.preventDefault();
       this.props.login(username, password)
+      this.props.loggedin() 
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);

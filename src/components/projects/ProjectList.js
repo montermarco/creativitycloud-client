@@ -6,14 +6,29 @@ import { Card } from 'antd';
 
 
 
+
 class ProjectList extends Component {
+    /*state ={
+        projects: {}
+    }*/
 
-    componentDidMount(){
-        this.props.projectList();
+     componentWillMount(){
+        //debugger;
+        this.props.projectList()
+        //this.setState({projects:proyectos});
     }
-
+    // componentWillReceiveProps({data}){
+    //     if(data){
+    //       const {projects} = data
+    //       debugger;
+    //       console.log(this.state.projects)
+    //       this.setState({ projects })
+    //     }
+    //   }
+  
     renderList(){
-        return this.props.project.map(oneProject => {
+
+        if(this.props.projects.length > 0){return this.props.projects.map(oneProject => {
             return(
                 <Card  key={oneProject._id} title={oneProject.categoria}>
                     <Card
@@ -25,7 +40,11 @@ class ProjectList extends Component {
                     </Card>                    
                 </Card>
             )
-        })
+        })}else{
+            return null
+        }
+        
+        
     }
 
     render() {       
@@ -38,8 +57,10 @@ class ProjectList extends Component {
 }
 
 
+
 const mapStateToProps = state => {
-    return { project: state.project}
+    return { projects: state.projects}
 }
+
 export default connect(mapStateToProps, {projectList})(ProjectList);
 

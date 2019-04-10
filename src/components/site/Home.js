@@ -30,19 +30,7 @@ const instructions = (
 
 //COMPONENT
 class Home extends Component {
-
-    state = {
-        user: ''
-    }
-
-    componentWillReceiveProps({data}){
-        if(data){
-          const {user} = data
-          console.log(data)
-          this.setState({ user })
-        }
-    }
-
+  
     render() {
         return (
           <div>

@@ -5,6 +5,6 @@ import userReducer from './userReducer';
 
 export default combineReducers({
     auth: authReducer,
-    project: projectReducer,
+    projects: projectReducer,
     user: userReducer
 });
