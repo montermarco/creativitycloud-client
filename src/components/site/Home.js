@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { PageHeader, Row, Col, Divider, Popover } from 'antd';
 
-
-
-
 const project = "Uso de una plataforma de código abierto para traducir libros para los estudiantes. Más de la mitad de los libros publicados en la India están escritos en hindi e inglés. Pero en un país con docenas de idiomas locales, esto significa que muchos estudiantes no tienen acceso a libros en su lengua materna.";
 const ccc = 'CreaticityCloud apoya a Pratham Books para ampliar rápidamente el alcance de su plataforma de traducción StoryWeaver.'
 

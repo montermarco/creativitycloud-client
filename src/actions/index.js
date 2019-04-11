@@ -1,32 +1,22 @@
 import axios from 'axios';
-import { LOGIN_USER, SIGNUP_USER, LOGOUT_USER, LOGGEDIN, PROJECT_LIST, GET_USER, SHOW_PROJECT } from './types'
-import AuthService from '../components/auth/AuthService';
-
-
+import { LOGIN_USER, SIGNUP_USER, LOGOUT_USER, LOGGEDIN, PROJECT_LIST, GET_USER, ADD_STEP_ONE_FORM, SHOW_PROJECT, ONE_CATEGORY } from './types'
 
 
 //////////////////////////////////////// SERVICE  
 
 const baseURL = process.env.REACT_APP_P3;
-//atention in reducers parameters, must not be undifined
-// Need one axios.create with sendCredentials = true and other without
-//The one without credentials is for the public routes
-
-
-const service = new AuthService()
 
 
 ////////////////////////////////////////////////// AUTH ACTIONS
 //SIGNUP
 export const signup = (username, password) => async dispatch => {
     try {
-        const response = await axios.post(`${baseURL}/signup`, {username, password}, {withCredentials: true})
-        dispatch({ type: SIGNUP_USER, payload: response })
+        const {data} = await axios.post(`${baseURL}/signup`, {username, password}, {withCredentials: true})
+        dispatch({ type: SIGNUP_USER, payload:  data.categoria })
     } catch (error) {
         console.log(error)
     }
 };
-
 
 // LOGIN    
 export const login = (username, password) => async dispatch => {
@@ -62,29 +52,36 @@ export const logout = () => async dispatch => {
 //LOGGEDIN
 export const loggedin = () => async dispatch => {
     const {data} = await axios.get(`${baseURL}/loggedin`, { withCredentials: true})
-    console.log('on action creator', data)
+    console.log('on logged action creator', data)
     dispatch({type: LOGGEDIN, payload: {user: data}})
-    // console.log('loggedin' + response)
 };
 
 
 //////////////////////////////////////////////  PROJECT ACTIONS
 
+//ADD STEP ONE FORM 
+export const addStepOneForm = (email, role, organizacion, contacto, cargo) => async dispatch => {
+    try {
+        const response = await axios.post(`${baseURL}/projects`, { email, role, organizacion, contacto, cargo },  { withCredentials: true})
+        console.log(response.data)
+        dispatch({ type: ADD_STEP_ONE_FORM, formValues: response.data })        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 //SHOW ALL PROJECTS - PROJECT LIST - GET
 export const projectList = () => async dispatch => {
     try {
-        const response = await axios.get(`${baseURL}/projects`, { withCredentials: true})
-        //debugger;        
+        const response = await axios.get(`${baseURL}/projects`, { withCredentials: true})  
         dispatch({ type: PROJECT_LIST, projectList: response.data })
-        console.log(response) 
     } catch (error) {
         console.log(error)
     }            
 }
     
 //SHOW ONE PROJECT - GET
-export const showProject = (id) => async dispatch => {
+export const showProject = id => async dispatch => {
     //debugger
     try {
         const response = await axios.get(`${baseURL}/projects/${id}`, { withCredentials: true})
@@ -95,10 +92,15 @@ export const showProject = (id) => async dispatch => {
     }            
 }
 
-
-
-
-
+//SHOW ONE CATEGORY
+export const oneCategory = category => async dispatch => {
+    try {     
+        const {data} = await axios.post(`${baseURL}/projects/cat/${category}`, {withCredentials: true})
+        dispatch({type: ONE_CATEGORY, payload: {categoria: data}})
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 
 
@@ -116,6 +118,7 @@ export const showProject = (id) => async dispatch => {
 
 /////////////////////////////////////// ES2015 SYNTAX FOR REFERENCE
 //-----> note - Add try-catch for error handling <------
+//atention in reducers parameters in actions creators, must not be undifined. parameters are the payload, you'll pass as argumenta the data you want
 /* 
 REDUCERS ALWAYS MUST RETURN SUEMTHING BUT UNDEFINIED EVEN NULL
 

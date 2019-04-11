@@ -10,12 +10,10 @@ import * as actions from '../../actions'
       password: '',
       username: '',
       confirmDirty: false,
-      autoCompleteResult: [],
     };
-  
+
     componentWillReceiveProps({data}){
-      if(data){
-        const {user} = data
+      if(data){ const {user} = data
         this.setState({user})
       }
     }
@@ -36,12 +34,10 @@ import * as actions from '../../actions'
         }
       });
     }
-
     handleConfirmBlur = (e) => {
       const value = e.target.value;
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
-
     compareToFirstPassword = (rule, value, callback) => {
       const form = this.props.form;
       if (value && value !== form.getFieldValue('password')) {
@@ -50,7 +46,6 @@ import * as actions from '../../actions'
         callback();
       }
     }
-  
     validateToNextPassword = (rule, value, callback) => {
       const form = this.props.form;
       if (value && this.state.confirmDirty) {
@@ -61,67 +56,60 @@ import * as actions from '../../actions'
   
     onRedirect = () => {
         return (this.state.user === '') ? 
+          <Row className="container" type="flex" justify="space-between" align="bottom">
+            <Col span={12} offset={6}>
+                <Form  onSubmit={this.handleSubmit}>
+                    <Form.Item label="Usuario">
+                      {this.props.form.getFieldDecorator('username')(
+                      <Input
+                        name='username'
+                        onChange={this.submission} 
+                        type="text" />
+                    )}
+                    </Form.Item>
 
-        <Row className="container" type="flex" justify="space-between" align="bottom">
-          <Col span={12} offset={6}>
-          <Form  onSubmit={this.handleSubmit}>
-        <Form.Item label="Usuario">
-          {this.props.form.getFieldDecorator('username')(
-          <Input
-            name='username'
-            onChange={this.submission} 
-            type="text" />
-        )}
-        </Form.Item>
+                    <Form.Item label="password">
+                      {this.props.form.getFieldDecorator('password', {
+                        rules: [{ required: true, message: 'Please input your password!', }, { validator: this.validateToNextPassword,}],
+                      })(
+                        <Input 
+                          name='password'  
+                          onChange={this.submission}
+                          type="password" />
+                      )}
+                    </Form.Item>
 
-        <Form.Item label="password">
-          {this.props.form.getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your password!', }, { validator: this.validateToNextPassword,}],
-          })(
-            <Input 
-              name='password'  
-              onChange={this.submission}
-              type="password" />
-          )}
-        </Form.Item>
+                    <Form.Item
+                      label="Confirma tu contraseña" >
+                      {this.props.form.getFieldDecorator('confirm', {
+                        rules: [{ required: true, message: 'Please confirm your password!', }, { validator: this.compareToFirstPassword, }],
+                      })(
+                        <Input type="password" onBlur={this.handleConfirmBlur} />
+                      )}
+                    </Form.Item>
 
-        <Form.Item
-          label="Confirma tu contraseña" >
-          {this.props.form.getFieldDecorator('confirm', {
-            rules: [{ required: true, message: 'Please confirm your password!', }, { validator: this.compareToFirstPassword, }],
-          })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
-          )}
-        </Form.Item>
+                    <Row type="flex" justify="center">
+                      <Form.Item >
+                        <Button type="primary" htmlType="submit">Registrar</Button>            
+                      </Form.Item>
+                    </Row>
 
-
-          <Row type="flex" justify="center">
-            <Form.Item >
-              <Button type="primary" htmlType="submit">Registrar</Button>            
-            </Form.Item>
-          </Row>
-
-          <Row type="flex" justify="center">
-            <Link to="/login">ya tienes cuenta?</Link>
-          </Row>
-
-        </Form>         
-          </Col>
-        </Row> :  <Redirect to='/home'/>
+                    <Row type="flex" justify="center">
+                      <Link to="/login">ya tienes cuenta?</Link>
+                    </Row>
+                </Form>         
+            </Col>
+        </Row> : <Redirect to='/home'/>
     }
 
     render() {
       return (
-        <div>
-        {this.onRedirect()}
-        </div>
+        <div>{this.onRedirect()}</div>
       );
     }
-
   }
   
   const SignupForm = Form.create({ name: 'register' })(Signup);
   
   const mapStateToProps = ({auth}) => { return auth }
-
   export default connect(mapStateToProps, actions)(SignupForm);

@@ -29,12 +29,12 @@ class App extends Component {
           <Header/>
             <Switch>
                 <Route exact path ='/' component={Landing} />
-                <Route path ='/home' component={Home} />
-                <Route path ='/login' component={LoginForm} />
-                <Route path ='/signup' component={SignupForm} />
+                <Route exact path ='/home' component={Home} />
+                <Route exact path ='/login' component={LoginForm} />
+                <Route exact path ='/signup' component={SignupForm} />
                 <Route exact path ='/profile' component={ProfileCard} />
                 <Route exact path ='/projects' component={ProjectList} />
-                <Route exact path ='/projects' component={ProjectList} />
+                <Route exact path ='/cat/:categoria' component={ProjectList} />
                 <Route exact path ='/projects/one' component={Steps} />
                 <Route exact path ='/projects/:id' component={ProjectDetails} />
                 

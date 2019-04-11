@@ -6,74 +6,80 @@ import { PageHeader, Statistic, Row, Col } from 'antd';
 const Description = ({ term, children, span = 12 }) => (
   <Col span={span}>
     <div className="description">
-      <div className="term">{term}</div>
+      <div className="term"><h4 className="perfil">{term}</h4></div>
       <div className="detail">{children}</div>
     </div>
   </Col>
 );
 
-const content = (
-    <div>
-        <Row>
-            <Description term="correo"></Description>
-            <Description term="tipo de usuario"></Description>
-            <Description term="contacto"></Description>
-            <Description term="correo contacto"></Description>
-            <Description term="cargo en la organizacion"></Description>
-            <Description term="año de creación"></Description>
-            <Description term="RFC"></Description>
-            <Description term="donatario"></Description>
-            <Description term="titulo"></Description>
-            <Description term="categoria"></Description>
-            <Description term="impacto en personas"></Description>
-            <Description term="impacto en zonas"></Description>
-            <Description term="fecha"></Description>
-            <Description term="descripcion apoyo" span={24}></Description>
-            <Description term="descripcion del proyecto" span={24}></Description>
-        </Row>
-    </div>
-);
-
-const extraContent = (
-  <Row>
-    <Col span={12}>
-      <Statistic title="apoyo" value="tipo de apoyo" />
-    </Col>
-    <Col span={12}>
-      <Statistic title="this mych" prefix="$" value={10568.08} />
-    </Col>
-  </Row>
-);
+/////////////////////////////////////////////// Component 
 
 class ProfileCard extends Component {
 
-  state = {
-    user: '',
-    Logged: '',
-  }
-
-      // to apply conditional rendering
-   componentWillReceiveProps({data}){
-    if(data === undefined){
-      console.log(data)
-      this.setState({ user: ''})
-    } else { this.setState({ user: data, logged: data.username })        
-      }   
-  }
+  state={
+    user: ''
+}
+componentWillReceiveProps({user}){
+ console.log(user)
+  this.setState({user})
+}
 
     renderProfile(){
+
+      const { username, email, organizacion, year, rfc, donatario, contacto, cargo, titulo, personas, zonas, fecha, apoyo, rango, explica, descripcion, categoria, role  } = this.state.user
             return (      
             <Row className="container" type="flex" justify="center" align="top">
-            <Col span={18} offser={2}>
-            <h1>Perfil</h1>
-              <PageHeader
-                    title='organizacion'
-                    subTitle='usuario'>
-                    <div className="wrap">
-                        <div className="content padding">{content}</div>
-                        <h1>{this.state.logged}</h1>
-                        <div className="extraContent">{extraContent}</div>                        
-                    </div>
+            <Col span={22}>
+            <h3>Perfil</h3>
+            <h1>{username}</h1>
+              <PageHeader title={organizacion}>
+                <div className="wrap">
+                            {/* RENDER EXTRA CONTENT */}
+                            <div className="content padding">
+
+                            <div>
+                                <Row>
+                                    <Description term="CORREO">{email}</Description>
+                                    <Description term="TIPO DE USUARIO">{role}</Description>
+                                </Row>
+                                <Row>
+                                    <Description term="CONTACTO">{contacto}</Description>  
+                                    <Description term="CARGO EN LA ORGANIZACIÓN">{cargo}</Description>
+                                </Row>
+                                <Row>
+                                    <Description term="AÑO DE CREACIÓN">{year}</Description>
+                                    <Description term="RFC">{rfc}</Description>
+                               </Row>
+                               <Row>
+                                    <Description term="DONATARIO">{donatario}</Description>
+                                    <Description term="NOMBRE DE PROYECTO">{titulo}</Description>
+                                </Row>
+                                <Row>    
+                                    <Description term="CATEGORIA">{categoria}</Description>
+                                    <Description term="IMPACTO EN PERSONAS">{personas}</Description>
+                                </Row>
+                                <Row>       
+                                    <Description term="IMPACTO EN ZONAS">{zonas}</Description>
+                                    <Description term="FECHA LIMITE DE APOYO">{fecha}</Description>     
+                                </Row>
+                            </div>
+                        </div>
+                            {/* RENDER EXTRA CONTENT */}
+                            <div className="extraContent">
+                            <Row>
+                                <Col span={12}>
+                                    <Description term="DESCRIPCIÓN DEL PROYECTO" span={24}>{descripcion}</Description>
+                                    <Description term="DESCRIPCIÓN DEL APOYO" span={24}>{explica}</Description>
+                                </Col>
+                                <Row  type="flex" justify="space-around">
+                                  <Col span={24}>
+                                    <Statistic className="perfil" title="TIPO DE APOYO" value={apoyo} />
+                                    <Statistic className="perfil" title="RANGO DE APOYO" prefix="$" value={rango} />
+                                  </Col>
+                                </Row>
+                            </Row>
+                            </div>                        
+                </div>
             </PageHeader>    
             </Col>
             </Row>
@@ -89,14 +95,8 @@ class ProfileCard extends Component {
     }
 }
 
-
-// const mapStateToProps = state => {
-//     return { project: state.project}
-// }
-
 const mapStateToProps = ({auth}) => { 
   console.log(auth)
   return auth }
 
 export default connect(mapStateToProps, actions)(ProfileCard);
-
