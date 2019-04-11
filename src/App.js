@@ -26,7 +26,7 @@ class App extends Component {
     return (    
         <div>
         <BrowserRouter>
-          <div className='nav'><Header/></div>          
+          <Header/>
             <Switch>
                 <Route exact path ='/' component={Landing} />
                 <Route path ='/home' component={Home} />
