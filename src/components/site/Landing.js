@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Carousel, Row, Col, Icon, Steps, Divider } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 const porque = "Simplemente hay demasiadas causas que apoyar con el empoderamiento de las Marcas y Organiazaciones comprometidas con un verdadero apoyo social alrededor del mundo.";
 const porques = "Una gran oportunidad para desarrollar campañas efectivas que transormen nuestra manera de crear impacto en un mundo mejor."
@@ -10,10 +12,18 @@ const lorem = "Queremos un mundo que funcione para todos, y creemos que la tecno
 const Step = Steps.Step;
 
 class Landing extends Component {
+
+    state={
+        user: ''
+    }
+
+    componentWillReceiveProps({user}){
+        this.setState({user})
+    }
+
     render() {
-        return (
-            
-            <Row span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        console.log(this.props.user)
+        return (this.state.user === '') ? (<Row span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                 <Col >
                     <Row>
                         <Row>
@@ -80,9 +90,10 @@ class Landing extends Component {
                                 <div className='space'></div>
                     </Row>
                 </Col>
-            </Row>            
-        );
+            </Row>) : <Redirect to='/home'/>
     }
 }
 
-export default Landing;
+
+const mapStateToProps = ({auth}) => { return auth }
+export default connect(mapStateToProps, actions)(Landing);

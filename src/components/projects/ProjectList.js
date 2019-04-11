@@ -8,24 +8,11 @@ import { Card } from 'antd';
 
 
 class ProjectList extends Component {
-    /*state ={
-        projects: {}
-    }*/
 
      componentWillMount(){
-        //debugger;
         this.props.projectList()
-        //this.setState({projects:proyectos});
     }
-    // componentWillReceiveProps({data}){
-    //     if(data){
-    //       const {projects} = data
-    //       debugger;
-    //       console.log(this.state.projects)
-    //       this.setState({ projects })
-    //     }
-    //   }
-  
+
     renderList(){
 
         if(this.props.projects.length > 0){return this.props.projects.map(oneProject => {
@@ -43,8 +30,6 @@ class ProjectList extends Component {
         })}else{
             return null
         }
-        
-        
     }
 
     render() {       
@@ -55,8 +40,6 @@ class ProjectList extends Component {
         );
     }
 }
-
-
 
 const mapStateToProps = state => {
     return { projects: state.projects}

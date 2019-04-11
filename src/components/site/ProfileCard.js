@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { projectList } from '../../actions'; 
+import * as actions from '../../actions'  
 import { PageHeader, Statistic, Row, Col } from 'antd';
 
 const Description = ({ term, children, span = 12 }) => (
@@ -15,7 +15,7 @@ const Description = ({ term, children, span = 12 }) => (
 const content = (
     <div>
         <Row>
-            <Description term="correo">monter.marco"gmail.com</Description>
+            <Description term="correo"></Description>
             <Description term="tipo de usuario"></Description>
             <Description term="contacto"></Description>
             <Description term="correo contacto"></Description>
@@ -47,22 +47,37 @@ const extraContent = (
 
 class ProfileCard extends Component {
 
-    componentDidMount(){
-        this.props.projectList();
-    }
+  state = {
+    user: '',
+    Logged: '',
+  }
+
+      // to apply conditional rendering
+   componentWillReceiveProps({data}){
+    if(data === undefined){
+      console.log(data)
+      this.setState({ user: ''})
+    } else { this.setState({ user: data, logged: data.username })        
+      }   
+  }
 
     renderProfile(){
-            return(
-                 <PageHeader
-                        title='organizacion'
-                        subTitle='usuario'>
-                        <div className="wrap">
-                            <div className="content padding">{content}</div>
-                            <div className="extraContent">{extraContent}</div>
-                        </div>
-                </PageHeader>    
-            )
-        
+            return (      
+            <Row className="container" type="flex" justify="center" align="top">
+            <Col span={18} offser={2}>
+            <h1>Perfil</h1>
+              <PageHeader
+                    title='organizacion'
+                    subTitle='usuario'>
+                    <div className="wrap">
+                        <div className="content padding">{content}</div>
+                        <h1>{this.state.logged}</h1>
+                        <div className="extraContent">{extraContent}</div>                        
+                    </div>
+            </PageHeader>    
+            </Col>
+            </Row>
+          )
     }
     
     render() {       
@@ -75,8 +90,13 @@ class ProfileCard extends Component {
 }
 
 
-const mapStateToProps = state => {
-    return { project: state.project}
-}
-export default connect(mapStateToProps, {projectList})(ProfileCard);
+// const mapStateToProps = state => {
+//     return { project: state.project}
+// }
+
+const mapStateToProps = ({auth}) => { 
+  console.log(auth)
+  return auth }
+
+export default connect(mapStateToProps, actions)(ProfileCard);
 

@@ -55,7 +55,7 @@ class Home extends Component {
 
             <div className='space'></div>
               <Popover placement="bottom" content={instructions} title="Para comenzar tu registro necesitas..." trigger="hover">
-            <Row span={12} type="flex" justify="center"><Link to='/projects/new' className='hombg hometxt'>Comenzar</Link></Row>
+            <Row span={12} type="flex" justify="center"><Link to='/projects/one' className='hombg hometxt'>Comenzar</Link></Row>
               </Popover>
             <div className='space'></div>
 

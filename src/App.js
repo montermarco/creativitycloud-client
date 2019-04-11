@@ -12,12 +12,16 @@ import Home from './components/site/Home';
 import ProfileCard from './components/site/ProfileCard';
 import ProjectList from './components/projects/ProjectList';
 import ProjectDetails from './components/projects/ProjectDetails'
-import AddProject from './components/projects/AddProject';
+import Steps from './components/projects/Steps';
 import 'antd/dist/antd.css';
+import { connect } from 'react-redux'
+import * as actions from './actions'
 
 
 class App extends Component {
-
+  componentWillMount(){
+    this.props.loggedin()
+  }
   render() {
     return (    
         <div>
@@ -30,17 +34,18 @@ class App extends Component {
                 <Route path ='/signup' component={SignupForm} />
                 <Route exact path ='/profile' component={ProfileCard} />
                 <Route exact path ='/projects' component={ProjectList} />
-                <Route exact path ='/projects/new' component={AddProject} />
+                <Route exact path ='/projects' component={ProjectList} />
+                <Route exact path ='/projects/one' component={Steps} />
                 <Route exact path ='/projects/:id' component={ProjectDetails} />
                 
             </Switch> 
                     
       </BrowserRouter>            
         </div>
-    );
+    )
   }
 }
 
-export default App;
+export default connect(({auth}) => auth, actions)(App);
 
 //<Secret user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} />

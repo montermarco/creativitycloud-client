@@ -13,12 +13,10 @@ import * as actions from '../../actions'
     }
   
     // to apply conditional rendering, from data we pull any user info
-    componentWillReceiveProps({data}){
-      if(data){
-        const {user} = data
-        console.log(this.state.user)
-        this.setState({ user })
-      }
+    componentWillReceiveProps({user}){
+        if(user){
+          this.setState({ user })
+        }
     }
 
     submission = e => {
@@ -32,7 +30,6 @@ import * as actions from '../../actions'
       const {username, password } = this.state
       e.preventDefault();
       this.props.login(username, password)
-      this.props.loggedin() 
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
@@ -41,9 +38,11 @@ import * as actions from '../../actions'
     }
 
     onRedirect = () => {
+      // debugger 
+      console.log(this.state.user)
       return (this.state.user === '') ?
                       
-        <Row className="container" type="flex" justify="space-between" align="top">
+        (<Row className="container" type="flex" justify="space-between" align="top">
         <Col span={12} offset={6}>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
@@ -91,7 +90,7 @@ import * as actions from '../../actions'
 
         </Form>        
         </Col>
-      </Row>  : <Redirect to='/home'/>
+      </Row>)  : <Redirect to='/home'/>
      
     }
 

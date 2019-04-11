@@ -22,11 +22,11 @@ class Header extends Component {
   }
 
   // to apply conditional rendering
-   componentWillReceiveProps({data}){
-    if(data === undefined){
-      console.log(data)
+   componentWillReceiveProps({user}){
+    if(user === undefined){
+      console.log(user)
       this.setState({ user: ''})
-    } else { this.setState({ user: data.username, logged: data._id })        
+    } else { this.setState({ user: user.username, logged: user._id })        
       }   
   }
 
@@ -36,6 +36,7 @@ class Header extends Component {
    
 
   Navbar =  () => {
+    console.log(this.state.user, this.state.logged)
     return (this.state.user === '') ?
         <Menu
           onClick={this.handleClick}
@@ -92,6 +93,6 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({auth}) => { return auth }
+const mapStateToProps = ({auth}) => auth
 export default connect(mapStateToProps, actions)(Header);
 
