@@ -14,8 +14,7 @@ export default (state = [], action) => {
             return action.project
         case ONE_CATEGORY:            
             return action.payload                   
-        default:  
-        console.log(action.formValues)   
+        default:          
             return state;                
     }
 };     

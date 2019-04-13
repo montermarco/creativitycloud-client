@@ -21,9 +21,12 @@ class Header extends Component {
     });    
   }
 
+  getCategory = () => {
+    this.props.oneCategory()
+  }
+
   componentWillReceiveProps({user}){         
-    if(user === undefined){
-      console.log(user)
+    if(user === undefined){      
       this.setState({ user: ''})
     } else { this.setState({ user: user.username, logged: user._id })        
       }   
@@ -62,7 +65,7 @@ class Header extends Component {
         <Menu.Item key="home"><Link to='/home'>home</Link></Menu.Item>
         
         <SubMenu 
-          onClick={this.handleClick} 
+          onClick={this.getCategory} 
           selectedKeys={[this.state.current]} 
           title={<span className="submenu-title-wrapper">
             <Link to='/projects'>explorar</Link></span>}>
@@ -70,21 +73,21 @@ class Header extends Component {
           <MenuItemGroup title="categorias">
             <Menu.Item key="arte"><Link to='/projects'>arte</Link></Menu.Item>
 
-            <Menu.Item key="alimentacion"><Link to={`/projects/cat/${'alimentacion'}`}>alimentación</Link></Menu.Item>
+            <Menu.Item key="alimentacion"><Link to='/projects'>alimentación</Link></Menu.Item>
 
-            <Menu.Item key="cultura"><Link to={`/projects/cat/${'cultura'}`}>cultura</Link></Menu.Item>
+            <Menu.Item key="cultura"><Link to='/projects'>cultura</Link></Menu.Item>
             
-            <Menu.Item key="educacion"><Link to={`/projects/cat/${'educacion'}`}>educación</Link></Menu.Item>
+            <Menu.Item key="educacion"><Link to='/projects'>educación</Link></Menu.Item>
             
-            <Menu.Item key="inclusion social"><Link to={`/projects/cat/${'inclusion'}`}>inclusión social</Link></Menu.Item>
+            <Menu.Item key="inclusion social"><Link to='/projects'>inclusión social</Link></Menu.Item>
             
-            <Menu.Item key="medio ambiente"><Link to={`/projects/cat/${'ambiente'}`}>medio ambiente</Link></Menu.Item>
+            <Menu.Item key="medio ambiente"><Link to='/projects'>medio ambiente</Link></Menu.Item>
             
-            <Menu.Item key="niñez y vejez"><Link to={`/projects/cat/${'niñezyvejez'}`}>niñez y vejez</Link></Menu.Item>
+            <Menu.Item key="niñez y vejez"><Link to='/projects'>niñez y vejez</Link></Menu.Item>
             
-            <Menu.Item key="salud"><Link to={`/projects/cat/${'salud'}`}>salud</Link></Menu.Item>
+            <Menu.Item key="salud"><Link to='/projects'>salud</Link></Menu.Item>
             
-            <Menu.Item key="tecnologia"><Link to={`/projects/cat/${'tecnologia'}`}>tecnología</Link></Menu.Item>            
+            <Menu.Item key="tecnologia"><Link to='/projects'>tecnología</Link></Menu.Item>            
           </MenuItemGroup>         
         </SubMenu>
         

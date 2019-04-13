@@ -49,7 +49,6 @@ export const logout = () => async dispatch => {
         localStorage.setItem('userId', null)
         await axios.get(`${baseURL}/logout`, { withCredentials: true})
         dispatch({type: LOGOUT_USER, payload: {}})
-
     } catch (error) {
         console.log(error)
     } 
@@ -96,8 +95,6 @@ export const addStepThreeForm = () => async dispatch => {
     }
 }
 
-
-
 //////////////////////////////////////////////  PROJECT ACTIONS
 
 //SHOW ALL PROJECTS - PROJECT LIST - GET
@@ -126,7 +123,7 @@ export const oneCategory = category => async dispatch => {
     try {     
         const response = await axios.post(`${baseURL}/projects/cat/${category}`, {withCredentials: true})
         dispatch({type: ONE_CATEGORY, payload:  response })
-        console.log(response.config.url)
+        console.log(response)
     } catch (error) {
         console.log(error)
     }
