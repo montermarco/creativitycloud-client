@@ -15,8 +15,8 @@ const baseURL = process.env.REACT_APP_P3;
 //SIGNUP
 export const signup = (username, password) => async dispatch => {
     try {
-        const {data} = await axios.post(`${baseURL}/signup`, {username, password}, {withCredentials: true})
-        dispatch({ type: SIGNUP_USER, payload:  {user: data} })
+        const response = await axios.post(`${baseURL}/signup`, {username, password}, {withCredentials: true})
+        dispatch({ type: SIGNUP_USER, payload: response })
     } catch (error) {
         console.log(error)
     }

@@ -84,11 +84,9 @@ class Landing extends Component {
                             <Divider/>
                                 <div className='space'></div>
                                     <div>
-                                        <Row type="flex" justify="center">
-                                        <h2 className="hdr">Nuestras áreas de interes</h2>
-                                        <p className='hombg hometxt'>{lorem}</p>
-                                        <img src="/images/campaing.jpg" alt="content"/>
-                                    </Row>
+                                        <Row type="flex" justify="center"><h2 className="hdr">Nuestras áreas de interes</h2></Row>
+                                        <Row type="flex" justify="center"><p className='hombg hometxt'>{lorem}</p></Row>                                   
+                                        <Row span={12} type="flex" justify="center"><img src="/images/campaing.jpg" alt="content"/></Row>
                                         <Row span={12} type="flex" justify="center"><Link to='/login' className='hombg hometxt'>Leer más...</Link></Row>
                                     </div>
                                 <div className='space'></div>

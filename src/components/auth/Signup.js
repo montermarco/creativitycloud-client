@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import { Form, Input, Button, Row, Col } from 'antd';
+import { Form, Input, Button, Row, Col, Alert } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
   
@@ -87,7 +87,7 @@ import * as actions from '../../actions'
                         <Input type="password" onBlur={this.handleConfirmBlur} />
                       )}
                     </Form.Item>
-
+                    <Alert message='Al registrarte serás dirigido a login para poder entrar' type="info" banner closable />         
                     <Row type="flex" justify="center">
                       <Form.Item >
                         <Button type="primary" htmlType="submit">Registrar</Button>            

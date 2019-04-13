@@ -15,7 +15,7 @@ class Header extends Component {
   }
 
   handleClick = (e) => {    
-    this.props.oneCategory(e.key)
+    //this.props.oneCategory(e.key)
     console.log('click ', e);
     this.setState({
       current: e.key,
@@ -69,7 +69,7 @@ class Header extends Component {
             <Link to='/projects'>explorar</Link></span>}>
           
           <MenuItemGroup title="categorias">
-            <Menu.Item key="arte"><Link to={`/projects/cat/${'arte'}`}>arte</Link></Menu.Item>
+            <Menu.Item key="arte"><Link to='/projects'>arte</Link></Menu.Item>
 
             <Menu.Item key="alimentacion"><Link to={`/projects/cat/${'alimentacion'}`}>alimentación</Link></Menu.Item>
 

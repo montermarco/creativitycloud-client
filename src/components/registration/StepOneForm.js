@@ -5,6 +5,7 @@ import * as actions from '../../actions'
 import { Form, Input, Tooltip, Icon, Row, Col, Alert } from 'antd';
 
 
+
 class StepOneForm extends Component {
   state = {
     email: '',
@@ -16,7 +17,7 @@ class StepOneForm extends Component {
   };
 
   componentWillReceiveProps({user} ){    
-    console.log("Toda la info", user)     
+    console.log("Toda la info", user) 
     if(user === undefined){
       this.setState({ user: ''})
     } else { this.setState({ user: user._id })        
@@ -26,6 +27,7 @@ class StepOneForm extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+    console.log(this.state)
     const { email, role, organizacion, contacto, cargo} = this.state 
     this.props.addStepOneForm( email, role, organizacion, contacto, cargo)
     .then( () => {        
@@ -35,8 +37,8 @@ class StepOneForm extends Component {
           organizacion: '',
           contacto: '',
           cargo: '', 
-        });
-        console.log(this.state.logged)
+        }); 
+        console.log(this.state)       
     })
     .catch( error => console.log(error) )
     this.props.form.validateFields((err, values) => {
@@ -121,7 +123,10 @@ class StepOneForm extends Component {
                         name="cargo"/>
                     
                     </Form.Item>
-                      <input type="submit" value="Guardar" />
+                    <input type="submit" value="Guardar" />
+                      
+                
+                
                 </Form>
             </Col>
             <Alert message='Por favor ingresa los datos solicitados y presiona el botón de "Guardar" para registrar los cambios, despúes da click en continuar para ir a la siguiente parte...' banner closable />
@@ -135,6 +140,9 @@ const Organizacion = Form.create({ name: 'Organizacion' })(StepOneForm);
 const mapStateToProps = ({auth}) => { 
 return auth }
 
+// const mapStateToProps = state => {
+//   return { projects: state.projects}
+// }
 export default connect(mapStateToProps, actions) (Organizacion);
 
 
