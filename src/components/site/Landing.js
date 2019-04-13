@@ -23,7 +23,11 @@ class Landing extends Component {
 
     render() {
         console.log(this.props.user)
-        return (this.state.user === '') ? (<Row span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        return (this.state.user === '') ? 
+        
+        (
+        
+        <Row span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                 <Col >
                     <Row>
                         <Row>
@@ -90,7 +94,10 @@ class Landing extends Component {
                                 <div className='space'></div>
                     </Row>
                 </Col>
-            </Row>) : <Redirect to='/home'/>
+            </Row>) 
+            
+            
+            : <Redirect to='/home'/>
     }
 }
 
