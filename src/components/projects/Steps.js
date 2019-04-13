@@ -71,12 +71,11 @@ class FormWrapper extends Component {
                 }
                 {
                     current === steps.length - 1
-                    && <Button onClick={() => message.success('Processing complete!')}>enviar</Button>
+                    && <Button onClick={() => message.success('La información fue recibida y enviada a validación, nos pondremos en contacto contigo ')}>enviar</Button>
                 }
             </div>
             </Col>
-        </Row>
-        
+        </Row>        
 
       </div>
       </Col>

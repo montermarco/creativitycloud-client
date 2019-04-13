@@ -99,7 +99,7 @@ import * as actions from '../../actions'
                     </Row>
                 </Form>         
             </Col>
-        </Row> : <Redirect to='/home'/>
+        </Row> : <Redirect to='/login'/>
     }
 
     render() {

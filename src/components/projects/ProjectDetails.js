@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 
 
-import { PageHeader, Statistic, Row, Col, Alert } from 'antd';
+import { PageHeader, Statistic, Row, Col, Button } from 'antd';
 
 const Description = ({ term, children, span = 12 }) => (
   <Col span={span}>
@@ -78,9 +78,7 @@ class ProjectDetails extends Component {
                             </div>                        
                 </div>
             </PageHeader>
-
-            <Link to="/projects">Atras</Link>
-
+            <Button type="primary" ghost> <Link to="/projects">Atras</Link></Button>
             </Col>
             </Row>
           )

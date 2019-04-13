@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
-
-import { Form, Input, Icon,  Radio, Tooltip, Select, Row, Col, DatePicker } from 'antd';
+import { Link } from 'react-router-dom';
+import { Form, Input, Icon,  Radio, Tooltip, Select, Row, Col, DatePicker, Button} from 'antd';
 const Option = Select.Option;
 const { MonthPicker} = DatePicker;
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
+
 
 class StepOneForm extends Component {
   state = {
@@ -84,8 +85,10 @@ class StepOneForm extends Component {
                     <MonthPicker name="fecha" placeholder="Selecciona una fecha limite" />
                 </Form.Item>
 
+                
                 </Form>
             </Col>
+            <Button type="primary" ghost><Link to='/home'>home</Link></Button>
       </Row>
     );
   }

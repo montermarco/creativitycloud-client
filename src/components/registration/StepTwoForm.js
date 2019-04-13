@@ -4,7 +4,7 @@ import * as actions from '../../actions'
 import mexStates from '../registration/mexStates.json'
 
 
-import { Form, Select, Radio, Row, Col } from 'antd';
+import { Form, Select, Radio, Row, Col, Alert } from 'antd';
 
 const estados = mexStates;
 const { Option } = Select;
@@ -23,11 +23,11 @@ const categories = [
    value: 'Educacion',
    name: 'Educacion'
  },{
-  value: 'Inclusión social',
-  name: 'Inclusión social'
+  value: 'Inclusion social',
+  name: 'Inclusion social'
 },{
    value: 'Medio ambiente',
-  name: 'Medio ambiente'
+  name: 'medio ambiente'
 },{
   value: 'Niñez y vejez',
   name: 'Niñez y vejez'
@@ -35,8 +35,8 @@ const categories = [
   value: 'Salud',
    name: 'Salud'
  },{
-   value: 'Tecnología',
-  name: 'Tecnología'
+   value: 'Tecnologia',
+  name: 'Tecnologia'
  }
 ]
 
@@ -60,7 +60,6 @@ class StepTwoForm extends Component {
      
   handleFormSubmit = (e) => {
     e.preventDefault();
-    
     const { categoria, zonas, personas } = this.state 
     this.props.addStepTwoForm( categoria, zonas, personas)
     .then( () => {        
@@ -79,7 +78,6 @@ class StepTwoForm extends Component {
   }
 
   handleCategorySelect = event => {
-    //this.setState({ })
     this.setState( {categoria: event })  
   }
 
@@ -157,6 +155,7 @@ class StepTwoForm extends Component {
 
       </Form>
       </Col>
+      <Alert message='Por favor ingresa los datos solicitados y presiona el botón de "Guardar" para registrar los cambios, despúes da click en continuar para ir a la siguiente parte...' banner closable />
       </Row>
     );
   }

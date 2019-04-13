@@ -64,7 +64,7 @@ class Home extends Component {
                 <h3 className='hombg hdr'>Vemos claro</h3>  
                   <p className='hombg hometxt'>{project}</p>
                   <p className='hombg hometxt'>{ccc}</p>                      
-                  <Row span={12} type="flex" justify="center"><Link to='/' className='hombg hometxt'>Leer más...</Link></Row>
+                  <Row span={12} type="flex" justify="center"><Link to='/proyects' className='hombg hometxt'>Leer más...</Link></Row>
                 </Col>
               </Row>
             </div><div className='space'></div>
@@ -78,7 +78,7 @@ class Home extends Component {
                   <h3 className='hombg hdr'>México bien plantado</h3>  
                   <p className='hombg hometxt'>{project}</p>
                   <p className='hombg hometxt'>{ccc}</p>                      
-                  <Row span={12} type="flex" justify="center"><Link to='/' className='hombg hometxt'>Leer más...</Link></Row>
+                  <Row span={12} type="flex" justify="center"><Link to='/proyects' className='hombg hometxt'>Leer más...</Link></Row>
                 </Col>
                 <Col span={12} ><img src="/images/medio.jpg" alt="content"/></Col>
               </Row>
@@ -94,7 +94,7 @@ class Home extends Component {
                   <h3 className='hombg hdr'>Libros del futuro</h3>  
                   <p className='hombg hometxt'>{project}</p>
                   <p className='hombg hometxt'>{ccc}</p>                      
-                  <Row span={12} type="flex" justify="center"><Link to='/' className='hombg hometxt'>Leer más...</Link></Row>
+                  <Row span={12} type="flex" justify="center"><Link to='/proyects' className='hombg hometxt'>Leer más...</Link></Row>
                 </Col>
               </Row>
               <div className='space'></div>

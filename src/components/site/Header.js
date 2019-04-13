@@ -15,7 +15,6 @@ class Header extends Component {
   }
 
   handleClick = (e) => {    
-    //this.props.oneCategory(e.key)
     console.log('click ', e);
     this.setState({
       current: e.key,
@@ -77,11 +76,11 @@ class Header extends Component {
             
             <Menu.Item key="educacion"><Link to={`/projects/cat/${'educacion'}`}>educación</Link></Menu.Item>
             
-            <Menu.Item key="inclusion social"><Link to={`/projects/cat/${'incluso social'}`}>inclusión social</Link></Menu.Item>
+            <Menu.Item key="inclusion social"><Link to={`/projects/cat/${'inclusion'}`}>inclusión social</Link></Menu.Item>
             
-            <Menu.Item key="medio ambiente"><Link to={`/projects/cat/${'medio ambiente'}`}>medio ambiente</Link></Menu.Item>
+            <Menu.Item key="medio ambiente"><Link to={`/projects/cat/${'ambiente'}`}>medio ambiente</Link></Menu.Item>
             
-            <Menu.Item key="niñez y vejez"><Link to={`/projects/cat/${'niñez y vejez'}`}>niñez y vejez</Link></Menu.Item>
+            <Menu.Item key="niñez y vejez"><Link to={`/projects/cat/${'niñezyvejez'}`}>niñez y vejez</Link></Menu.Item>
             
             <Menu.Item key="salud"><Link to={`/projects/cat/${'salud'}`}>salud</Link></Menu.Item>
             
