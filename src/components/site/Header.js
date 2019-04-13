@@ -15,6 +15,7 @@ class Header extends Component {
   }
 
   handleClick = (e) => {    
+    this.props.oneCategory(e.key)
     console.log('click ', e);
     this.setState({
       current: e.key,
@@ -72,23 +73,23 @@ class Header extends Component {
 
             <Menu.Item key="alimentacion"><Link to={`/projects/cat/${'alimentacion'}`}>alimentación</Link></Menu.Item>
 
-            <Menu.Item key="cultura"><Link to='/cat/'>cultura</Link></Menu.Item>
+            <Menu.Item key="cultura"><Link to={`/projects/cat/${'cultura'}`}>cultura</Link></Menu.Item>
             
-            <Menu.Item key="educacion"><Link to='/cat/'>educación</Link></Menu.Item>
+            <Menu.Item key="educacion"><Link to={`/projects/cat/${'educacion'}`}>educación</Link></Menu.Item>
             
-            <Menu.Item key="inclusion social"><Link to='/cat/'>inclusión social</Link></Menu.Item>
+            <Menu.Item key="inclusion social"><Link to={`/projects/cat/${'incluso social'}`}>inclusión social</Link></Menu.Item>
             
-            <Menu.Item key="medio ambiente"><Link to='/cat/'>medio ambiente</Link></Menu.Item>
+            <Menu.Item key="medio ambiente"><Link to={`/projects/cat/${'medio ambiente'}`}>medio ambiente</Link></Menu.Item>
             
-            <Menu.Item key="niñez y vejez"><Link to='/cat/'>niñez y vejez</Link></Menu.Item>
+            <Menu.Item key="niñez y vejez"><Link to={`/projects/cat/${'niñez y vejez'}`}>niñez y vejez</Link></Menu.Item>
             
-            <Menu.Item key="salud"><Link to='/cat/'>salud</Link></Menu.Item>
+            <Menu.Item key="salud"><Link to={`/projects/cat/${'salud'}`}>salud</Link></Menu.Item>
             
-            <Menu.Item key="tecnologia"><Link to='/cat/'>tecnología</Link></Menu.Item>            
+            <Menu.Item key="tecnologia"><Link to={`/projects/cat/${'tecnologia'}`}>tecnología</Link></Menu.Item>            
           </MenuItemGroup>         
         </SubMenu>
         
-        <Menu.Item key="logout"><Link to='/' onClick={this.logout}><Icon type="logout" /></Link></Menu.Item>
+        <Menu.Item key="logout"><Link to='/login' onClick={this.logout}><Icon type="logout" /></Link></Menu.Item>
         
       </Menu>    
   }

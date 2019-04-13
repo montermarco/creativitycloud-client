@@ -8,6 +8,8 @@ export const GET_USER = 'GET_USER'
 
 //PROJECT
 export const ADD_STEP_ONE_FORM = 'ADD_STEP_ONE_FORM'
+export const ADD_STEP_TWO_FORM = 'ADD_STEP_TWO_FORM'
+export const ADD_STEP_TRHEE_FORM = 'ADD_STEP_TRHEE_FORM'
 export const PROJECT_LIST = 'PROJECT_LIST'
 export const SHOW_PROJECT = 'SHOW_PROJECT'
 export const ONE_CATEGORY = 'ONE_CATEGORY'

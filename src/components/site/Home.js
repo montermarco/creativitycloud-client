@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { PageHeader, Row, Col, Divider, Popover } from 'antd';
+import { PageHeader, Row, Col, Divider, Popover, Alert } from 'antd';
 
 const project = "Uso de una plataforma de código abierto para traducir libros para los estudiantes. Más de la mitad de los libros publicados en la India están escritos en hindi e inglés. Pero en un país con docenas de idiomas locales, esto significa que muchos estudiantes no tienen acceso a libros en su lengua materna.";
 const ccc = 'CreaticityCloud apoya a Pratham Books para ampliar rápidamente el alcance de su plataforma de traducción StoryWeaver.'
@@ -31,12 +31,12 @@ class Home extends Component {
     render() {
         return (
           <div>
-            
+          <Alert message='Presiona comenzar para iniciar el proceso de registro de 3 pasos, o puedes ir a la sección de explorar para conocer algunos proyectos' type="info" banner closable />
             <div>
               <PageHeader title="">
                 <div className="wrap">
                   <Row type="flex" justify="center">
-                    <h1 className="hdr">CERATIVITY CLOUD</h1>                    
+                    <h1 className="ccc">CERATIVITY CLOUD</h1>                    
                   </Row>
                   <h2 className="hdr">creatividad con causa</h2>
                   <Row type="flex" justify="center">
@@ -48,11 +48,10 @@ class Home extends Component {
                   </Row>
                 </div>
               </PageHeader>  
-            </div>      
-
+            </div>                   
             <div className='space'></div>
               <Popover placement="bottom" content={instructions} title="Para comenzar tu registro necesitas..." trigger="hover">
-            <Row span={12} type="flex" justify="center"><Link to='/projects/one' className='hombg hometxt'>Comenzar</Link></Row>
+            <Row span={12} type="flex" justify="center"><Link to='/projects/one' className='comenzar hometxt'>Comenzar</Link></Row>
               </Popover>
             <div className='space'></div>
 

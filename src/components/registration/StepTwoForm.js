@@ -9,11 +9,68 @@ import { Form, Select, Radio, Row, Col } from 'antd';
 const estados = mexStates;
 const { Option } = Select;
 const RadioGroup = Radio.Group;
+const categories = [
+  {
+  value: 'Arte',
+  name: 'Arte'
+},
+{ value: 'Alimentacion',
+   name: 'Alimentacion'
+ },{
+   value: 'Cultura',
+  name: 'Cultura'
+ },{
+   value: 'Educacion',
+   name: 'Educacion'
+ },{
+  value: 'Inclusión social',
+  name: 'Inclusión social'
+},{
+   value: 'Medio ambiente',
+  name: 'Medio ambiente'
+},{
+  value: 'Niñez y vejez',
+  name: 'Niñez y vejez'
+ },{
+  value: 'Salud',
+   name: 'Salud'
+ },{
+   value: 'Tecnología',
+  name: 'Tecnología'
+ }
+]
 
 class StepTwoForm extends Component {
 
-    handleSubmit = (e) => {
+  state = {
+    categoria: [],
+    zonas: [],
+    personas: '',
+    user: '',
+  }
+
+  componentWillReceiveProps({user} ){        
+    if(user === undefined){
+      this.setState({ user: ''})
+    } else { this.setState({ user: user._id })
+    localStorage.setItem('userId', user._id)
+     }   
+  }
+
+     
+  handleFormSubmit = (e) => {
     e.preventDefault();
+    
+    const { categoria, zonas, personas } = this.state 
+    this.props.addStepTwoForm( categoria, zonas, personas)
+    .then( () => {        
+        this.setState({
+          categoria: [],
+          zonas: [],
+          personas: '',
+        });        
+    })
+    .catch( error => console.log(error) )
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
@@ -21,8 +78,26 @@ class StepTwoForm extends Component {
     });
   }
 
-  render() {
-    const { getFieldDecorator } = this.props.form;    
+  handleCategorySelect = event => {
+    //this.setState({ })
+    this.setState( {categoria: event })  
+  }
+
+  handleZonesSelect(event){
+    this.setState( {zonas: event})  
+  }
+
+  handleChange(event) {    
+    console.log(this.props) 
+    console.log(this.props.form);       
+    console.log(event)    
+    this.setState({personas: event})  
+    console.log(this.state);     
+
+  }
+
+   
+  render() {      
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 17 },
@@ -32,57 +107,43 @@ class StepTwoForm extends Component {
         height: '30px',
         lineHeight: '30px',
       };
+         
     return (
         
          <Row className="container" type="flex" justify="space-between" align="top">
         <Col span={17} offset={2}>
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form {...formItemLayout} onSubmit={this.handleFormSubmit}>
    
-        <Form.Item
-          label="Categorias"
-        >
-          {getFieldDecorator('categoria', {
-            rules: [
-              { required: true, message: 'Por favor selecciona las categorias de tu preferencia!', type: 'array' },
-            ],
-          })(
-            <Select name="categoria" mode="multiple" placeholder="Selecciona las categorias de tu preferencia">
-              <Option value="arte">arte</Option>
-              <Option value="alimentación">alimentación</Option>
-              <Option value="cultura">cultura</Option>
-              <Option value="educación">educación</Option>
-              <Option value="inclusión social">inclusión social</Option>
-              <Option value="medio ambiente">medio ambiente</Option>
-              <Option value="Niñez y vejéz">Niñez y vejéz</Option>
-              <Option value="Salud">Salud</Option>
-              <Option value="Tecnología">Tecnología</Option>
+        <Form.Item label="Categorias">
+            
+            <Select                 
+                onChange={ e => this.handleCategorySelect(e)}
+                name="categoria" 
+                mode="multiple" 
+                placeholder="Selecciona las categorias de tu preferencia">
+
+                {categories.map((category) => 
+                  <Option 
+                      key={category.value}>{category.name}</Option>)}
             </Select>
-          )}
         </Form.Item>
 
 
-        <Form.Item
-          label="Zonas"
-        >
-          {getFieldDecorator('zonas', {
-            rules: [
-              { required: true, message: 'Por favor selecciona las categorias de tu preferencia!', type: 'array' },
-            ],
-          })(
-            <Select name="zonas" mode="multiple" placeholder="Selecciona las zonas de imapcto de tu preferencia">
+        <Form.Item label="Zonas">
+            <Select             
+              onChange={ e => this.handleZonesSelect(e)}              
+              name="zonas" mode="multiple" placeholder="Selecciona las zonas de imapcto de tu preferencia">
                 {estados.map(estado => (
-                    <Option key={estado.clave} value={estado.nombre}>{estado.nombre}</Option>
+                    <Option 
+                        key={estado.clave} 
+                        value={estado.nombre}>{estado.nombre}
+                    </Option>
                 ))}
             </Select>
-          )}
         </Form.Item>
  
-
-
-        <Form.Item
-          label="Impacto en personas"
-        >
-            <RadioGroup name="personas">
+        <Form.Item label="Impacto en personas">
+            <RadioGroup name="personas" onChange={ e => this.handleChange(e)}>
                 <Radio style={radioStyle} value={1}>1 a 10</Radio>
                 <Radio style={radioStyle} value={2}>11 a 50</Radio>
                 <Radio style={radioStyle} value={3}>51 a 100</Radio>            
@@ -90,6 +151,9 @@ class StepTwoForm extends Component {
                 <Radio style={radioStyle} value={5}>mas de 1,000</Radio>             
             </RadioGroup>
         </Form.Item>
+        
+        <input type="submit" value="Guardar" />
+
 
       </Form>
       </Col>

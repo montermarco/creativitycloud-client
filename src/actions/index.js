@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { LOGIN_USER, SIGNUP_USER, LOGOUT_USER, LOGGEDIN, PROJECT_LIST, GET_USER, ADD_STEP_ONE_FORM, SHOW_PROJECT, ONE_CATEGORY } from './types'
+import { 
+    LOGIN_USER, SIGNUP_USER, LOGOUT_USER, LOGGEDIN,  GET_USER,
+    PROJECT_LIST, SHOW_PROJECT, 
+    ADD_STEP_ONE_FORM, ADD_STEP_TWO_FORM, ADD_STEP_TRHEE_FORM, ONE_CATEGORY 
+} from './types'
 
 
 //////////////////////////////////////// SERVICE  
@@ -12,7 +16,7 @@ const baseURL = process.env.REACT_APP_P3;
 export const signup = (username, password) => async dispatch => {
     try {
         const {data} = await axios.post(`${baseURL}/signup`, {username, password}, {withCredentials: true})
-        dispatch({ type: SIGNUP_USER, payload:  data.categoria })
+        dispatch({ type: SIGNUP_USER, payload:  {user: data} })
     } catch (error) {
         console.log(error)
     }
@@ -22,12 +26,12 @@ export const signup = (username, password) => async dispatch => {
 export const login = (username, password) => async dispatch => {
     try {        
         const {data} = await axios.post(`${baseURL}/login`, {username, password }, {withCredentials: true})
+        localStorage.setItem('userId', data._id)
         dispatch({type: LOGIN_USER, payload: {user: data}})
     } catch (error) {
         console.log(error)
     }
 };
-
 
  //GET USER 
 export const getUser = (id) => async dispatch => {
@@ -42,8 +46,10 @@ export const getUser = (id) => async dispatch => {
 //LOGUOT
 export const logout = () => async dispatch => {
     try {
+        localStorage.setItem('userId', null)
         await axios.get(`${baseURL}/logout`, { withCredentials: true})
         dispatch({type: LOGOUT_USER, payload: {}})
+
     } catch (error) {
         console.log(error)
     } 
@@ -57,18 +63,42 @@ export const loggedin = () => async dispatch => {
 };
 
 
-//////////////////////////////////////////////  PROJECT ACTIONS
+//////////////////////////////////////////////  FORM ACTIONS
 
 //ADD STEP ONE FORM 
-export const addStepOneForm = (email, role, organizacion, contacto, cargo) => async dispatch => {
+export const addStepOneForm = (id, email, role, organizacion, contacto, cargo) => async dispatch => {
     try {
-        const response = await axios.post(`${baseURL}/projects`, { email, role, organizacion, contacto, cargo },  { withCredentials: true})
-        console.log(response.data)
+        const response = await axios.put(`${baseURL}/projects/${localStorage.getItem('userId')}`, { email, role, organizacion, contacto, cargo },  { withCredentials: true})
+        console.log(response)
         dispatch({ type: ADD_STEP_ONE_FORM, formValues: response.data })        
     } catch (error) {
         console.log(error)
     }
 }
+
+export const addStepTwoForm = (categorias, zonas, personas) => async dispatch => {
+    try {
+        const response = await axios.put(`${baseURL}/projects/${localStorage.getItem('userId')}`, {categorias, zonas, personas}, {withCredentials: true})
+        console.log(response)
+        dispatch({type: ADD_STEP_TWO_FORM, formTwoValues: response.data })        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const addStepThreeForm = () => async dispatch => {
+    try {
+        const response = await axios.put(`${baseURL}/projects/${localStorage.getItem('userId')}`, {}, {withCredentials: true})
+        dispatch({type: ADD_STEP_TRHEE_FORM, formTrheeValues: response.data })
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+
+//////////////////////////////////////////////  PROJECT ACTIONS
 
 //SHOW ALL PROJECTS - PROJECT LIST - GET
 export const projectList = () => async dispatch => {
@@ -81,12 +111,11 @@ export const projectList = () => async dispatch => {
 }
     
 //SHOW ONE PROJECT - GET
-export const showProject = id => async dispatch => {
-    //debugger
+export const showProject = id => async dispatch => {    
     try {
         const response = await axios.get(`${baseURL}/projects/${id}`, { withCredentials: true})
-        dispatch({ type: SHOW_PROJECT, project: response.data }) 
-        console.log('hacia el id' + response)
+        dispatch({ type: SHOW_PROJECT, project: response.data}) 
+        console.log(response.data)
     } catch (error) {
         console.log(error)
     }            
@@ -95,8 +124,9 @@ export const showProject = id => async dispatch => {
 //SHOW ONE CATEGORY
 export const oneCategory = category => async dispatch => {
     try {     
-        const {data} = await axios.post(`${baseURL}/projects/cat/${category}`, {withCredentials: true})
-        dispatch({type: ONE_CATEGORY, payload: {categoria: data}})
+        const response = await axios.post(`${baseURL}/projects/cat/${category}`, {withCredentials: true})
+        dispatch({type: ONE_CATEGORY, payload:  response })
+        console.log(response.config.url)
     } catch (error) {
         console.log(error)
     }

@@ -31,11 +31,12 @@ code {
 }
 
 .ccc{
-  margin-bottom: 150px;
-  background-image: url("/images/landingBrain.png");
-  background-position: center;
-  height: 800px;
-  background-repeat: no-repeat;     
+  color: #59C3C9;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 10px;  
+  font-size: 2.3rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(142, 189, 220), 0 0 5px rgba(29, 76, 147, 0.625);
 }
 
 .creativity{
@@ -133,7 +134,7 @@ code {
 
 .hometxt{
   padding: 10px 20px;
-  word-spacing: 5px; 
+  word-spacing: 15px; 
   line-height: 15px; 
   text-align: justify;
   text-justify: inter-word;
@@ -142,6 +143,12 @@ code {
 .hombg{
   background-color: rgba(255, 255, 255, 0.687);
   font-family: 'Montserrat', sans-serif;    
+}
+
+.comenzar{
+  font-family: 'Montserrat', sans-serif;
+  color: #CE73BC;
+  font-size: 1.5rem;    
 }
 
 .perfil{

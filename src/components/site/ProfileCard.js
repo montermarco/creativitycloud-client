@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions'  
-import { PageHeader, Statistic, Row, Col } from 'antd';
+import { PageHeader, Statistic, Row, Col, Alert } from 'antd';
 
 const Description = ({ term, children, span = 12 }) => (
   <Col span={span}>
@@ -19,6 +19,7 @@ class ProfileCard extends Component {
   state={
     user: ''
 }
+
 componentWillReceiveProps({user}){
  console.log(user)
   this.setState({user})
@@ -29,6 +30,7 @@ componentWillReceiveProps({user}){
       const { username, email, organizacion, year, rfc, donatario, contacto, cargo, titulo, personas, zonas, fecha, apoyo, rango, explica, descripcion, categoria, role  } = this.state.user
             return (      
             <Row className="container" type="flex" justify="center" align="top">
+            <Alert message='Oh oh! ... Al parecer algo salio mal, vuelve a cargar la pagina por favor o da lcick en tu nombre nuevamente' banner closable />
             <Col span={22}>
             <h3>Perfil</h3>
             <h1>{username}</h1>
