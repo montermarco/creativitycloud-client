@@ -31,17 +31,21 @@ code {
 }
 
 .ccc{
-  background-image: url("/images/landingBrain.png");
-  margin-bottom: 150px;
-  background-repeat: no-repeat;
-  background-position: center;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 10px;  
   font-size: 2.3rem;
   text-align: center;
-  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(142, 189, 220), 0 0 5px rgba(29, 76, 147, 0.625);
+  text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px rgb(142, 189, 220), 0 0 5px rgba(29, 76, 147, 0.625);  
+}
+
+.brain{
+  background-image: url("/images/landingBrain.png");
+  margin-bottom: 150px;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 800px;
 }
+
 
 .creativity{
   background-color: rgba(89, 195, 201, 0.495);

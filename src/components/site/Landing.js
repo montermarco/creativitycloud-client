@@ -36,7 +36,7 @@ class Landing extends Component {
 
                             <Carousel vertical autoplay>
 
-                                <div className='ccc'><br/></div>
+                                <div className='brain ccc'><br/></div>
 
                                     <div className='who'>
                                         <Row type="flex" justify="start">   
